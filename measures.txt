@@ -1,0 +1,130 @@
+-- ===================================
+-- Indian Railways Network Analysis - DAX Measures
+-- ===================================
+
+TotalTrains = COUNTROWS('railways_projet trainss')
+
+TotalStations = COUNTROWS('railways_projet stationss')
+
+TotalZones = DISTINCTCOUNT('railways_projet stationss'[zone_clean])
+
+Avg Speed (KMPH) = 
+AVERAGEX(
+    FILTER(
+        'railways_projet trainss',
+        'railways_projet trainss'[Distance] > 0 &&
+        (VALUE('railways_projet trainss'[Duration Hours]) > 0 || VALUE('railways_projet trainss'[Duration Minutes]) > 0)
+    ),
+    DIVIDE(
+        'railways_projet trainss'[Distance],
+        VALUE('railways_projet trainss'[Duration Hours]) + DIVIDE(VALUE('railways_projet trainss'[Duration Minutes]), 60)
+    )
+)
+
+AvgSpeedByTrainType = 
+AVERAGEX(
+    FILTER(
+        'railways_projet trainss',
+        'railways_projet trainss'[Distance] > 0 &&
+        (VALUE('railways_projet trainss'[Duration Hours]) > 0 || VALUE('railways_projet trainss'[Duration Minutes]) > 0)
+    ),
+    DIVIDE(
+        'railways_projet trainss'[Distance],
+        VALUE('railways_projet trainss'[Duration Hours]) + DIVIDE('railways_projet trainss'[Duration Minutes], 60)
+    )
+)
+
+AvgSpeedKmh = 
+VAR SelectedZone =
+    SELECTEDVALUE('railways_projet stationss'[zone_clean])
+RETURN
+CALCULATE(
+    AVERAGEX(
+        FILTER(
+            'railways_projet trainss',
+            'railways_projet trainss'[Distance] > 0 &&
+            (VALUE('railways_projet trainss'[Duration Hours]) > 0 || VALUE('railways_projet trainss'[Duration Minutes]) > 0)
+        ),
+        DIVIDE(
+            'railways_projet trainss'[Distance],
+            VALUE('railways_projet trainss'[Duration Hours]) + DIVIDE('railways_projet trainss'[Duration Minutes], 60)
+        )
+    ),
+    REMOVEFILTERS('railways_projet stationss'),
+    REMOVEFILTERS('railways_projet schedules'),
+    FILTER(
+        ALL('railways_projet trainss'[Zone]),
+        IF(
+            SelectedZone = "Unknown",
+            ISBLANK('railways_projet trainss'[Zone]) ||
+            'railways_projet trainss'[Zone] = "?",
+            'railways_projet trainss'[Zone] = SelectedZone
+        )
+    )
+)
+
+FirstACPct = 
+VAR SelectedZone =
+    SELECTEDVALUE('railways_projet stationss'[zone_clean])
+RETURN
+CALCULATE(
+    DIVIDE(
+        SUM('railways_projet trainss'[First AC]),
+        COUNTROWS('railways_projet trainss')
+    ),
+    REMOVEFILTERS('railways_projet stationss'),
+    REMOVEFILTERS('railways_projet schedules'),
+    FILTER(
+        ALL('railways_projet trainss'[Zone]),
+        IF(
+            SelectedZone = "Unknown",
+            ISBLANK('railways_projet trainss'[Zone]) ||
+            'railways_projet trainss'[Zone] = "?",
+            'railways_projet trainss'[Zone] = SelectedZone
+        )
+    )
+)
+
+SecondACPct = 
+VAR SelectedZone =
+    SELECTEDVALUE('railways_projet stationss'[zone_clean])
+RETURN
+CALCULATE(
+    DIVIDE(
+        SUM('railways_projet trainss'[Second AC]),
+        COUNTROWS('railways_projet trainss')
+    ),
+    REMOVEFILTERS('railways_projet stationss'),
+    REMOVEFILTERS('railways_projet schedules'),
+    FILTER(
+        ALL('railways_projet trainss'[Zone]),
+        IF(
+            SelectedZone = "Unknown",
+            ISBLANK('railways_projet trainss'[Zone]) ||
+            'railways_projet trainss'[Zone] = "?",
+            'railways_projet trainss'[Zone] = SelectedZone
+        )
+    )
+)
+
+ThirdACPct = 
+VAR SelectedZone =
+    SELECTEDVALUE('railways_projet stationss'[zone_clean])
+RETURN
+CALCULATE(
+    DIVIDE(
+        SUM('railways_projet trainss'[Third AC]),
+        COUNTROWS('railways_projet trainss')
+    ),
+    REMOVEFILTERS('railways_projet stationss'),
+    REMOVEFILTERS('railways_projet schedules'),
+    FILTER(
+        ALL('railways_projet trainss'[Zone]),
+        IF(
+            SelectedZone = "Unknown",
+            ISBLANK('railways_projet trainss'[Zone]) ||
+            'railways_projet trainss'[Zone] = "?",
+            'railways_projet trainss'[Zone] = SelectedZone
+        )
+    )
+)
