@@ -30,6 +30,5 @@ Railway zones currently lack a consolidated view of performance metrics like ave
 
 
 
-## 📁 Files
-- `SQL/queries.sql` — table structure and verification queries
-- `DAX/measures.txt` — all DAX measures used in the dashboard
+- `queries.sql` — table structure and verification queries
+- `measures.txt` — all DAX measures used in the dashboard
