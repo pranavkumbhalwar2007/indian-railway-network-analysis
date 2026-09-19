@@ -1,5 +1,7 @@
 # Indian Railways Network Analysis
 
+🎥 **[Watch 15-sec dashboard demo on LinkedIn](https://www.linkedin.com/posts/pranav-kumbhalwar-937aaa3b1_powerbi-dataanalytics-sql-activity-7506719221779886080--ugO?utm_source=share&utm_medium=member_desktop&rcm=ACoAAGS4OrsBdKwoOTd-H4nvMfoJlhgys7uDSl0)**
+
 ## 📊 Overview
 An end-to-end data analysis project examining India's railway network — covering 5,208 trains and 8,990 stations across 18 railway zones. The analysis benchmarks zone-wise speed performance and AC coach availability to identify infrastructure investment priorities.
 
