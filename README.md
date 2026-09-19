@@ -9,17 +9,19 @@ An end-to-end data analysis project examining India's railway network, covering 
 Railway zones lack a consolidated view of performance metrics like average speed and AC coach accessibility, making it hard for decision-makers to identify which zones need a closer look.
 
 ## 🛠️ Tech Stack
+- **Excel + Power Query**: JSON-to-table conversion, data cleaning, dataset structuring
 - **MySQL**: relational database design (stations, trains, schedules)
 - **Power Query**: data cleaning and transformation
 - **DAX**: custom measures for zone-wise calculations
 - **Power BI**: interactive dashboard and visualization
 
 ## 🔍 Approach
-1. Designed a relational schema in MySQL linking stations, trains, and schedules tables
-2. Cleaned inconsistent zone data (handled blank and placeholder values as "Unknown")
-3. Built DAX measures for average speed and AC-class availability, and cross-verified key KPIs (total trains, stations, zones, average speed) against raw SQL queries
-4. Fixed real issues during the build: map geocoding (switched to lat/long), many-to-many cross-filter direction that made AC% identical across zones, and speed measures that ignored minutes
-5. Created an interactive Power BI dashboard with zone-level filtering
+1. Converted raw JSON to tabular format in Excel/Power Query, cleaned columns, removed junk rows, and split data into Stations, Trains and Schedules datasets (exported as CSV)
+2. Designed a relational schema in MySQL linking stations, trains, and schedules tables
+3. Cleaned inconsistent zone data (handled blank and placeholder values as "Unknown")
+4. Built DAX measures for average speed and AC-class availability, and cross-verified key KPIs (total trains, stations, zones, average speed) against raw SQL queries
+5. Fixed real issues during the build: map geocoding (switched to lat/long), many-to-many cross-filter direction that made AC% identical across zones, and speed measures that ignored minutes
+6. Created an interactive Power BI dashboard with zone-level filtering
 
 ## 💡 Key Insights
 - **KR zone** has the highest average train speed (53 km/h), while **SECR and ECR** are the lowest (35 km/h)
