@@ -36,7 +36,7 @@ Railway zones lack a consolidated view of performance metrics like average speed
 ## 📁 Files
 - `queries.sql`: table structure and verification queries
 - `measures.txt`: all DAX measures used in the dashboard
-- `.pbix`: open in Power BI Desktop for the interactive version
+- `Railway Analysis Project.pbix`: open in Power BI Desktop for the interactive version
 
 ## 👤 Author
 Pranav Kumbhalwar | [LinkedIn](https://www.linkedin.com/in/pranav-kumbhalwar-937aaa3b1)
